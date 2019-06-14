@@ -1,0 +1,22 @@
+@import "../../../../assets/css/variables";
+
+div.card {
+  background-color: #fff;
+  min-width: calc(100% - 64px);
+  max-width: calc(100% - 64px);
+  height: auto;
+  padding: 32px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: 0 3px 10px $shadow-color;
+
+  &.sm {
+    min-height: 64px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  & > div.card-header {
+    margin-bottom: 48px;
+  }
+}

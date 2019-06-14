@@ -1,0 +1,33 @@
+<div class="ui grid">
+  <div class="four">
+    <app-card title="Регистрация">
+      <form [formGroup]="registerForm">
+        <label>
+          E-mail
+          <input type="text" formControlName="email">
+        </label>
+        <label>
+          Логин
+          <input type="text" formControlName="login">
+        </label>
+        <label>
+          Пароль
+          <input type="password" formControlName="email">
+        </label>
+        <label>
+          Пароль ещё раз
+          <input type="password" formControlName="email">
+        </label>
+        <button>Зарегистрироваться</button>
+      </form>
+    </app-card>
+  </div>
+  <div class="four mt-24">
+    <app-card [sm]="true">
+      <div class="flex ai-center jc-center lh-64">
+        <span>Уже зарегистрированы?</span>&nbsp;
+        <a routerLink="/login" routerLinkActive="active">Войдите</a>
+      </div>
+    </app-card>
+  </div>
+</div>

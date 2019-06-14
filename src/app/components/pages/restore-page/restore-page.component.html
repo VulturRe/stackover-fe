@@ -1,0 +1,22 @@
+<div class="ui grid">
+  <div class="four">
+    <app-card title="Восстановление пароля">
+      <form [formGroup]="restoreForm">
+        <label>
+          Логин
+          <input type="text" formControlName="login">
+        </label>
+        <button>Восстановить</button>
+      </form>
+    </app-card>
+  </div>
+  <div class="four mt-24">
+    <app-card [sm]="true">
+      <div class="flex ai-center jc-center lh-64">
+        <a routerLink="/login" routerLinkActive="active">Войти</a>&nbsp;
+        <span>или</span>&nbsp;
+        <a routerLink="/register" routerLinkActive="active">Зарегистрироваться</a>
+      </div>
+    </app-card>
+  </div>
+</div>

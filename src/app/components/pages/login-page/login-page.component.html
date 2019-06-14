@@ -1,0 +1,26 @@
+<div class="ui grid">
+  <div class="four">
+    <app-card title="Вход">
+      <form [formGroup]="loginForm">
+        <label>
+          Логин
+          <input type="text" formControlName="login">
+        </label>
+        <label>
+          Пароль
+          <input type="password" formControlName="password">
+        </label>
+        <button>Войти</button>
+        <a class="mt-8" routerLink="/restore" routerLinkActive="active">Забыли пароль?</a>
+      </form>
+    </app-card>
+  </div>
+  <div class="four mt-24">
+    <app-card [sm]="true">
+      <div class="flex ai-center jc-center lh-64">
+        <span>Ещё нет аккаунта?</span>&nbsp;
+        <a routerLink="/register" routerLinkActive="active">Зарегистрируйтесь</a>
+      </div>
+    </app-card>
+  </div>
+</div>
