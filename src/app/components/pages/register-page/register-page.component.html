@@ -5,21 +5,24 @@
         <label>
           E-mail
           <input type="text" formControlName="email">
+          <span class="error-hint" *ngIf="registerForm.controls.email.invalid">{{getError('email')}}</span>
         </label>
         <label>
           Логин
           <input type="text" formControlName="login">
+          <span class="error-hint" *ngIf="registerForm.controls.login.invalid">{{getError('login')}}</span>
         </label>
         <label>
           Пароль
           <input type="password" formControlName="password">
+          <span class="error-hint" *ngIf="registerForm.controls.password.invalid">{{getError('password')}}</span>
         </label>
         <label>
           Пароль ещё раз
           <input type="password" formControlName="confirmPassword">
+          <span class="error-hint" *ngIf="registerForm.controls.confirmPassword.invalid">{{getError('confirmPassword')}}</span>
         </label>
-        <button type="submit">Зарегистрироваться</button>
-        {{registerForm.invalid}}
+        <button type="submit" [disabled]="registerForm.invalid">Зарегистрироваться</button>
       </form>
     </app-card>
   </div>

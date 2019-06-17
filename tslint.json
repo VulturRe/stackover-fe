@@ -1,4 +1,5 @@
 {
+  "curly": [true, "ignore-same-line"],
   "extends": "tslint:recommended",
   "rules": {
     "array-type": false,
