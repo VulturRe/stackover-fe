@@ -1,7 +1,7 @@
 <div class="ui grid">
   <div class="four">
     <app-card title="Вход">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (submit)="login()">
         <label>
           Логин
           <input type="text" formControlName="login">
@@ -10,7 +10,7 @@
           Пароль
           <input type="password" formControlName="password">
         </label>
-        <button>Войти</button>
+        <button type="submit">Войти</button>
         <a class="mt-8" routerLink="/restore" routerLinkActive="active">Забыли пароль?</a>
       </form>
     </app-card>
