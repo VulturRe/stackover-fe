@@ -5,12 +5,14 @@
         <label>
           Логин
           <input type="text" formControlName="login">
+          <span class="error-hint" *ngIf="loginForm.controls.login.invalid">{{getError('login')}}</span>
         </label>
         <label>
           Пароль
           <input type="password" formControlName="password">
+          <span class="error-hint" *ngIf="loginForm.controls.password.invalid">{{getError('password')}}</span>
         </label>
-        <button type="submit">Войти</button>
+        <button type="submit" [disabled]="loginForm.invalid">Войти</button>
         <a class="mt-8" routerLink="/restore" routerLinkActive="active">Забыли пароль?</a>
       </form>
     </app-card>

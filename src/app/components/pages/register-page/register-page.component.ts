@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { checkPasswords } from 'src/app/_validators/checkPasswords';
 import { Validators } from 'src/app/_validators/validators';
+import { Helpers } from 'src/app/helpers';
 import { IUser } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,7 +26,7 @@ export class RegisterPageComponent {
               private userService: UserService) {}
 
   register() {
-    this.setControlsIfNull();
+    Helpers.setControlsIfNull(this.registerForm);
     if (this.registerForm.invalid) return;
     const user: IUser = {
       email: this.registerForm.controls.email.value,
@@ -37,31 +38,7 @@ export class RegisterPageComponent {
       .subscribe(() => this.router.navigate(['/']));
   }
 
-  setControlsIfNull() {
-    const controls = this.registerForm.controls;
-    if (controls.email.value === null) controls.email.setValue('');
-    if (controls.login.value === null) controls.login.setValue('');
-    if (controls.password.value === null) controls.password.setValue('');
-    if (controls.confirmPassword.value === null) controls.confirmPassword.setValue('');
-  }
-
   getError(controlName: string) {
-    const errors = this.registerForm.controls[controlName].errors;
-    if (errors.email) return 'Неверный формат e-mail';
-    if (errors.required) return 'Обязательное поле';
-    if (errors.minLength) return `Минимальная длина ${errors.minLength.min} ${this.getPlural(errors.minLength.min)}`;
-    if (errors.notEquivalent) return `Пароли не совпадают`;
-  }
-
-  private getPlural(count: number) {
-    if (count === 1) return 'символ';
-    if (count === 2 || count === 3 || count === 4) return 'символа';
-    if (count > 20) {
-      const str = count.toString();
-      const lastDigit = parseInt(str[str.length - 1], 10);
-      if (lastDigit === 1) return 'символ';
-      if (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) return 'символа';
-    }
-    return 'символов';
+    return Helpers.getError(this.registerForm, controlName);
   }
 }
