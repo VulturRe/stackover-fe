@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { shareReplay, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { IToken, IUser } from 'src/app/models/user';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  private readonly baseUrl = '/api/user/';
+  private readonly baseUrl = '/api/user';
 
   private static setSession(authResult: IToken) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
@@ -36,14 +37,14 @@ export class UserService {
   }
 
   register(user: IUser) {
-    return this.http.post<IUser>(`${this.baseUrl}register`, user)
+    return this.http.post<IUser>(`${this.baseUrl}/register`, user)
       .pipe(
         shareReplay()
       );
   }
 
   login(user: IUser) {
-    return this.http.post<IToken>(`${this.baseUrl}auth`, user)
+    return this.http.post<IToken>(`${this.baseUrl}/auth`, user)
       .pipe(
         tap(res => UserService.setSession(res))
       );
@@ -53,5 +54,17 @@ export class UserService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.router.navigate(['/login']);
+  }
+
+  restoreBegin(login: string) {
+    return this.http.post(`${this.baseUrl}/restore-begin`, { login }, { responseType: 'text' });
+  }
+
+  restoreEnd(token: string, password: string) {
+    return this.http.post(`${this.baseUrl}/restore-end`, { token, password }, { responseType: 'text' });
+  }
+
+  checkRestoreToken(token: string) {
+    return this.http.post<boolean>(`${this.baseUrl}/check-token`, { token });
   }
 }

@@ -1,4 +1,7 @@
 <div class="card" [class.sm]="!!sm">
+  <div class="card-loader" [hidden]="!loading">
+    <div class="spinner"></div>
+  </div>
   <div class="card-header" *ngIf="title">
     <span class="title">{{title}}</span>
   </div>

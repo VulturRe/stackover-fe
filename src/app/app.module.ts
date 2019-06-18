@@ -11,6 +11,8 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { RestorePageComponent } from './components/pages/restore-page/restore-page.component';
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
+import { ResetPageComponent } from './components/pages/reset-page/reset-page.component';
+import { MessageComponent } from './components/common/message/message.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SearchPageComponent } from './components/pages/search-page/search-page.
     SearchPageComponent,
     CardComponent,
     RestorePageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ResetPageComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

@@ -15,15 +15,28 @@ span.title {
 }
 
 button {
+  width: 100%;
+  position: relative;
   height: 48px;
   border: none;
   cursor: pointer;
   margin-top: 16px;
   background-color: $primary-color;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   border-radius: $border-radius;
+
+  &.outline {
+    background-color: #fff;
+    color: $primary-color;
+    border: 1px solid $border-color;
+
+    &:hover {
+      border-color: $primary-color;
+      background-color: #fff;
+    }
+  }
 
   &[disabled] {
     background-color: $border-color;
