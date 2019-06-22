@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthInterceptor } from 'src/app/_interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,9 @@ import { RestorePageComponent } from './components/pages/restore-page/restore-pa
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
 import { ResetPageComponent } from './components/pages/reset-page/reset-page.component';
 import { MessageComponent } from './components/common/message/message.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { SearchComponent } from './components/common/search/search.component';
+import { QuestionComponent } from './components/common/question/question.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +27,17 @@ import { MessageComponent } from './components/common/message/message.component'
     RestorePageComponent,
     RegisterPageComponent,
     ResetPageComponent,
-    MessageComponent
+    MessageComponent,
+    HeaderComponent,
+    SearchComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     {

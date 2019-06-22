@@ -22,7 +22,7 @@
           <input type="password" formControlName="confirmPassword">
           <span class="error-hint" *ngIf="registerForm.controls.confirmPassword.invalid">{{getError('confirmPassword')}}</span>
         </label>
-        <button type="submit" [disabled]="registerForm.invalid">Зарегистрироваться</button>
+        <button type="submit" class="lg wide" [disabled]="registerForm.invalid">Зарегистрироваться</button>
       </form>
     </app-card>
   </div>

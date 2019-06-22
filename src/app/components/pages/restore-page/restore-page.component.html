@@ -7,13 +7,13 @@
           <input type="text" formControlName="login">
           <span class="error-hint" *ngIf="restoreForm.controls.login.invalid">{{getError('login')}}</span>
         </label>
-        <button type="submit">Восстановить</button>
+        <button type="submit" class="lg wide">Восстановить</button>
       </form>
       <app-message *ngIf="submitted">
         Мы отправили вам на почту инструкции по восстановлению пароля. Чтобы восстановить доступ к аккаунту,
         пройдите по ссылке из письма. Если этого письма нет во «Входящих», пожалуйста, проверьте «Спам».
       </app-message>
-      <button *ngIf="submitted" class="outline mt-32" type="button" (click)="resend()">Отправить повторно</button>
+      <button *ngIf="submitted" class="outline mt-32 lg wide" type="button" (click)="resend()">Отправить повторно</button>
     </app-card>
   </div>
   <div class="four mt-24">

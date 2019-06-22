@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AnonymousGuard } from 'src/app/_guards/anonymous.guard';
 import { AuthGuard } from 'src/app/_guards/auth.guard';
 import { RestoreTokenGuard } from 'src/app/_guards/restore-token.guard';
 import { LoginPageComponent } from 'src/app/components/pages/login-page/login-page.component';
@@ -10,10 +11,11 @@ import { SearchPageComponent } from 'src/app/components/pages/search-page/search
 
 const routes: Routes = [
   { path: '', component: SearchPageComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'restore', component: RestorePageComponent },
+  { path: 'login', component: LoginPageComponent, canActivate: [AnonymousGuard] },
+  { path: 'restore', component: RestorePageComponent, canActivate: [AnonymousGuard] },
   { path: 'reset', component: ResetPageComponent, canActivate: [RestoreTokenGuard] },
-  { path: 'register', component: RegisterPageComponent }
+  { path: 'register', component: RegisterPageComponent, canActivate: [AnonymousGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

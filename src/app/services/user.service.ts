@@ -1,15 +1,18 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { of } from 'rxjs';
-import { catchError, map, shareReplay, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { shareReplay, tap } from 'rxjs/operators';
 import { IToken, IUser } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  isLoggedIn$ = new BehaviorSubject(UserService.isLoggedIn());
+  isLoggedOut$ = new BehaviorSubject(UserService.isLoggedOut());
 
   constructor(private http: HttpClient,
               private router: Router) { }
@@ -46,13 +49,19 @@ export class UserService {
   login(user: IUser) {
     return this.http.post<IToken>(`${this.baseUrl}/auth`, user)
       .pipe(
-        tap(res => UserService.setSession(res))
+        tap(res => {
+          UserService.setSession(res);
+          this.isLoggedIn$.next(true);
+          this.isLoggedOut$.next(false);
+        })
       );
   }
 
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.isLoggedIn$.next(false);
+    this.isLoggedOut$.next(true);
     this.router.navigate(['/login']);
   }
 

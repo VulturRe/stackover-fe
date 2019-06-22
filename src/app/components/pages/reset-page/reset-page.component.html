@@ -12,10 +12,10 @@
           <input type="password" formControlName="confirmPassword">
           <span class="error-hint" *ngIf="passwordForm.controls.confirmPassword.invalid">{{getError('confirmPassword')}}</span>
         </label>
-        <button type="submit">Сохранить</button>
+        <button type="submit" class="lg wide">Сохранить</button>
       </form>
       <app-message *ngIf="submitted">Вы успешно установили новый пароль!</app-message>
-      <button *ngIf="submitted" (click)="login()">Войти</button>
+      <button class="lg wide" *ngIf="submitted" (click)="login()">Войти</button>
     </app-card>
   </div>
   <div class="four mt-24">
