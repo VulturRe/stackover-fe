@@ -28,7 +28,7 @@ export class SearchPageComponent {
   }
 
   loadMore() {
-    if (!this.hasMore) { return; }
+    if (!this.hasMore || !this.search || this.search.trim().length === 0) { return; }
     this.stackService.similar(this.search, this.page)
       .subscribe(questions => {
         this.page++;

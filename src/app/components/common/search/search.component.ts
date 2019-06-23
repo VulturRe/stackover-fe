@@ -12,7 +12,15 @@ export class SearchComponent {
 
   constructor() { }
 
-  emit() {
-    this.search.emit(this.value);
+  emit(event: KeyboardEvent) {
+    if (event) {
+      if (event.key === 'Enter') {
+        this.search.emit(this.value);
+      } else {
+        return;
+      }
+    } else {
+      this.search.emit(this.value);
+    }
   }
 }
