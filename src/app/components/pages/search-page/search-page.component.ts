@@ -19,17 +19,32 @@ export class SearchPageComponent {
   onSearch(value: string) {
     this.search = value;
     if (!this.search || this.search.trim().length === 0) { return; }
-    this.stackService.similar(value, this.page)
-      .subscribe(questions => {
-        this.page++;
-        this.hasMore = questions.has_more;
-        this.questions = questions.items;
-      });
+    if (value.split(' ').length === 1) {
+      this.stackService.search(null, value, this.page)
+        .subscribe(questions => {
+          this.hasMore = questions.has_more;
+          this.questions = questions.items;
+        });
+    } else {
+      this.stackService.similar(value, this.page)
+        .subscribe(questions => {
+          this.hasMore = questions.has_more;
+          this.questions = questions.items;
+        });
+    }
   }
 
   loadMore() {
     if (!this.hasMore || !this.search || this.search.trim().length === 0) { return; }
-    this.stackService.similar(this.search, this.page)
+    if (this.search.split(' ').length === 1) {
+      this.stackService.search(null, this.search, this.page + 1)
+        .subscribe(questions => {
+          this.page++;
+          this.hasMore = questions.has_more;
+          this.questions.push(...questions.items);
+        });
+    }
+    this.stackService.similar(this.search, this.page + 1)
       .subscribe(questions => {
         this.page++;
         this.hasMore = questions.has_more;

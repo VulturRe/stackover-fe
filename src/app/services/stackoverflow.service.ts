@@ -11,6 +11,19 @@ export class StackoverflowService {
 
   constructor(private http: HttpClient) { }
 
+  search(inTitle?: string, tagged?: string, page: number = 1, pageSize: number = 10, order: string = 'desc', sort: string = 'relevance') {
+    return this.http.get<IResponse<IQuestion>>(`${this.baseUrl}/search`, {
+      params: {
+        intitle: inTitle,
+        tagged,
+        page: page.toString(),
+        pagesize: pageSize.toString(),
+        order,
+        sort
+      }
+    });
+  }
+
   similar(title: string, page: number = 1, pageSize: number = 10, order: string = 'desc', sort: string = 'relevance') {
     return this.http.get<IResponse<IQuestion>>(`${this.baseUrl}/similar`, {
       params: {
