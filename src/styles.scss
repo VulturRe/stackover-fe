@@ -6,12 +6,18 @@ body {
   margin: 0;
   font-family: Roboto, sans-serif;
   color: #555;
-  background-color: #f4f4f4;
+  background-color: $gray;
+}
+
+.not-clickable {
+  cursor: default !important;
 }
 
 div.tag {
   font-size: 14px;
   max-height: 16px;
+  max-width: min-content;
+  cursor: pointer;
   padding: 4px 8px;
   color: #fff;
   border-radius: $border-radius;

@@ -1,0 +1,16 @@
+div.quick-search {
+  display: flex;
+  flex-flow: column;
+  padding: 16px;
+  margin-top: 16px;
+  background-color: #fff;
+}
+
+div.title {
+  font-size: 20px;
+  display: flex;
+
+  & > div.tag {
+    margin-left: 8px;
+  }
+}

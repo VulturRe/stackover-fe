@@ -1,4 +1,4 @@
-<div class="question">
+<div class="question" [class.no-wrapper]="noWrapper">
   <div class="question__title" [innerHTML]="question.title"></div>
   <div class="question__footer">
     <div class="username">
@@ -7,7 +7,7 @@
       <span>{{question.owner.display_name}}</span>
     </div>
     <div class="tags">
-      <div *ngFor="let tag of question.tags" class="tag">{{tag}}</div>
+      <div *ngFor="let tag of question.tags" class="tag" [class.not-clickable]="notClickable" (click)="onTagClick(tag)">{{tag}}</div>
     </div>
     <div class="comments">
       <fa name="comments" [class.green]="question.is_answered"></fa>

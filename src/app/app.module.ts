@@ -17,6 +17,7 @@ import { MessageComponent } from './components/common/message/message.component'
 import { HeaderComponent } from './components/common/header/header.component';
 import { SearchComponent } from './components/common/search/search.component';
 import { QuestionComponent } from './components/common/question/question.component';
+import { QuickSearchComponent } from './components/common/quick-search/quick-search.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { QuestionComponent } from './components/common/question/question.compone
     MessageComponent,
     HeaderComponent,
     SearchComponent,
-    QuestionComponent
+    QuestionComponent,
+    QuickSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { QuestionComponent } from './components/common/question/question.compone
       useClass: AuthInterceptor,
       multi: true
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [QuickSearchComponent]
 })
 export class AppModule {}

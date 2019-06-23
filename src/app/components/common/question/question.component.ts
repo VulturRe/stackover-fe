@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IQuestion } from 'src/app/models/stackoverflow';
 
 @Component({
@@ -9,6 +9,13 @@ import { IQuestion } from 'src/app/models/stackoverflow';
 export class QuestionComponent {
 
   @Input() question: IQuestion;
+  @Input() notClickable: boolean;
+  @Input() noWrapper: boolean;
+  @Output() tagClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
+
+  onTagClick(tag: string) {
+    this.tagClick.emit(tag);
+  }
 }
