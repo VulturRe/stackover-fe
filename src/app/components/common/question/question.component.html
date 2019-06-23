@@ -1,0 +1,17 @@
+<div class="question">
+  <div class="question__title" [innerHTML]="question.title"></div>
+  <div class="question__footer">
+    <div class="username">
+      <fa name="smile" *ngIf="!question.owner.profile_image"></fa>
+      <img *ngIf="question.owner.profile_image" [src]="question.owner.profile_image" [alt]="question.owner.display_name">
+      <span>{{question.owner.display_name}}</span>
+    </div>
+    <div class="tags">
+      <div *ngFor="let tag of question.tags" class="tag">{{tag}}</div>
+    </div>
+    <div class="comments">
+      <fa name="comments" [class.green]="question.is_answered"></fa>
+      <span>{{question.answer_count}}</span>
+    </div>
+  </div>
+</div>

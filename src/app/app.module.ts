@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthInterceptor } from 'src/app/_interceptors/auth.interceptor';
@@ -37,7 +37,8 @@ import { QuestionComponent } from './components/common/question/question.compone
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule
   ],
   providers: [
     {

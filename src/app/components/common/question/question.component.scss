@@ -1,0 +1,68 @@
+@import "../../../../assets/css/variables";
+
+div.question {
+  background-color: #fff;
+  margin-top: 32px;
+  border-color: $border-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  padding: 16px;
+
+  &__title {
+    font-size: 24px;
+  }
+
+  &__footer {
+    display: flex;
+    margin-top: 16px;
+
+    & > div.username {
+      display: flex;
+      align-items: center;
+
+      & > i {
+        font-size: 24px;
+      }
+
+      & > img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      & > i, img {
+        margin-right: 8px;
+      }
+
+      & > span {
+        font-size: 20px;
+      }
+    }
+
+    & > div.tags {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      margin-right: 24px;
+      flex-wrap: wrap-reverse;
+
+      & > div.tag {
+        margin-right: 8px;
+      }
+    }
+
+    & > div.comments {
+      display: flex;
+      align-items: center;
+
+      & > fa {
+        font-size: 21px;
+      }
+
+      & > span {
+        font-size: 16px;
+        margin-left: 8px;
+      }
+    }
+  }
+}

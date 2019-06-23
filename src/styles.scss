@@ -9,6 +9,15 @@ body {
   background-color: #f4f4f4;
 }
 
+div.tag {
+  font-size: 14px;
+  max-height: 16px;
+  padding: 4px 8px;
+  color: #fff;
+  border-radius: $border-radius;
+  background-color: $primary-color-light;
+}
+
 span.title {
   font-size: 24px;
   font-weight: bold;

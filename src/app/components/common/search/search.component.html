@@ -1,4 +1,4 @@
 <div class="search">
-  <input type="text" placeholder="Что будем искать?">
-  <button>Найти</button>
+  <input type="text" placeholder="Что будем искать?" [(ngModel)]="value">
+  <button (click)="emit()">Найти</button>
 </div>

@@ -1,3 +1,10 @@
+export interface IResponse<T> {
+  has_more: boolean;
+  quota_max: number;
+  quota_remaining: number;
+  items: Array<T>;
+}
+
 export interface IQuestion {
   accepted_answer_id?: number;
   answer_count: number;
