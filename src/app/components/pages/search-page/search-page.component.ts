@@ -78,4 +78,24 @@ export class SearchPageComponent {
         });
     }
   }
+
+  onAuthorClick(question: IQuestion) {
+    const index = this.questions.findIndex(q => q.question_id === question.question_id);
+    if (index === -1) { return; }
+    const quickSearchPanel = this.quickSearchPanels.toArray()[index];
+    const openedIndex = this.openedQuickSearchPanels.findIndex(i => i === index);
+    if (openedIndex !== -1) {
+      this.openedQuickSearchPanels.splice(openedIndex, 1);
+      quickSearchPanel.detach(0);
+    } else {
+      this.stackService.userQuestions(question.owner.user_id)
+        .subscribe(questions => {
+          this.openedQuickSearchPanels.push(index);
+          const factory = this.factoryResolver.resolveComponentFactory(QuickSearchComponent);
+          const componentRef = quickSearchPanel.createComponent(factory);
+          componentRef.instance.user = question.owner;
+          componentRef.instance.questions = questions.items;
+        });
+    }
+  }
 }

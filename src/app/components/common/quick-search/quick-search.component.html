@@ -3,7 +3,7 @@
     Наиболее популярные вопросы по тэгу <div class="tag not-clickable">{{tag}}</div>
   </div>
   <div class="title" *ngIf="!tag && user">
-    Наиболее популярные вопросы автора <span class="bold">{{user.display_name}}</span>
+    Наиболее популярные вопросы автора&nbsp;<span class="bold">{{user.display_name}}</span>
   </div>
   <app-question *ngFor="let question of questions" notClickable="true" noWrapper="true" [question]="question"></app-question>
 </div>

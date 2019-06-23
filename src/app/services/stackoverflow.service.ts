@@ -34,4 +34,10 @@ export class StackoverflowService {
       }
     });
   }
+
+  userQuestions(id: number) {
+    return this.http.get<IResponse<IQuestion>>(`${this.baseUrl}/users/${id}/questions`, {
+      params: { pagesize: '3', order: 'desc', sort: 'votes' }
+    });
+  }
 }
