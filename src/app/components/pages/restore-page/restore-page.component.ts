@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from 'src/app/_validators/validators';
 import { Helpers } from 'src/app/helpers';
+import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class RestorePageComponent {
   });
 
   constructor(private fb: FormBuilder,
+              private errService: ErrorService,
               private userService: UserService) { }
 
   restore() {
@@ -27,9 +29,7 @@ export class RestorePageComponent {
     }
 
     this.userService.restoreBegin(this.restoreForm.controls.login.value)
-      .subscribe(() => {
-        this.submitted = true;
-      });
+      .subscribe(() => this.submitted = true, err => this.errService.show(err.error));
   }
 
   resend() {

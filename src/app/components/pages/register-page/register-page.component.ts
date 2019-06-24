@@ -5,6 +5,7 @@ import { checkPasswords } from 'src/app/_validators/checkPasswords';
 import { Validators } from 'src/app/_validators/validators';
 import { Helpers } from 'src/app/helpers';
 import { IUser } from 'src/app/models/user';
+import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class RegisterPageComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              private errService: ErrorService,
               private userService: UserService) {}
 
   register() {
@@ -35,7 +37,7 @@ export class RegisterPageComponent {
     };
 
     this.userService.register(user)
-      .subscribe(() => this.router.navigate(['/']));
+      .subscribe(() => this.router.navigate(['/']), err => this.errService.show(err.error));
   }
 
   getError(controlName: string) {
