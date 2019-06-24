@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
     this.value = this.initialValue;
   }
 
-  emit(event: KeyboardEvent) {
+  emit(event?: KeyboardEvent) {
     if (event) {
       if (event.key === 'Enter') {
         this.search.emit(this.value);
