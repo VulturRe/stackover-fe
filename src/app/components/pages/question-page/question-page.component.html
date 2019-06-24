@@ -1,0 +1,14 @@
+<div class="ui grid">
+  <div class="six">
+    <app-question [question]="question"></app-question>
+    <app-answer *ngFor="let answer of answers" [answer]="answer"></app-answer>
+    <div *ngIf="hasMore" class="more" (click)="loadMore()">
+      <app-card sm="true">
+        <div class="flex ai-center jc-center lh-64 point">
+          <span class="fs-20 mr-8">Загрузить ещё</span>
+          <fa name="angle-double-down" class="fs-21 bold"></fa>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

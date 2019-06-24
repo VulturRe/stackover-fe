@@ -1,0 +1,10 @@
+<div class="answer">
+  <div class="answer__body" [innerHTML]="answer.body"></div>
+  <div class="answer__footer">
+    <div class="username point">
+      <fa name="smile" *ngIf="!answer.owner.profile_image"></fa>
+      <img *ngIf="answer.owner.profile_image" [src]="answer.owner.profile_image" [alt]="answer.owner.display_name">
+      <span [innerHTML]="answer.owner.display_name"></span>
+    </div>
+  </div>
+</div>

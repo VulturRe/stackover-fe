@@ -1,0 +1,39 @@
+@import "../../../../assets/css/variables";
+
+div.answer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-color: $border-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  margin-top: 32px;
+  padding: 0 16px 16px;
+
+  &__footer {
+    display: flex;
+
+    & > div.username {
+      display: flex;
+      align-items: center;
+
+      & > i {
+        font-size: 24px;
+      }
+
+      & > img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      & > i, img {
+        margin-right: 8px;
+      }
+
+      & > span {
+        font-size: 20px;
+      }
+    }
+  }
+}

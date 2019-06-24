@@ -18,6 +18,8 @@ import { HeaderComponent } from './components/common/header/header.component';
 import { SearchComponent } from './components/common/search/search.component';
 import { QuestionComponent } from './components/common/question/question.component';
 import { QuickSearchComponent } from './components/common/quick-search/quick-search.component';
+import { QuestionPageComponent } from './components/pages/question-page/question-page.component';
+import { AnswerComponent } from './components/common/answer/answer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { QuickSearchComponent } from './components/common/quick-search/quick-sea
     HeaderComponent,
     SearchComponent,
     QuestionComponent,
-    QuickSearchComponent
+    QuickSearchComponent,
+    QuestionPageComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
