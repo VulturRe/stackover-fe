@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `docker-compose -f docker-compose.dev.yml up -d` in stackover-be folder for a MongoDB & MongoExpress instanses.
 
-Run `npm run dev` in stackover-be folder for api.
+Run `npm run dev` in stackover-be folder for api. NOTE: run only after MongoDB starts.
 
 ## Build
 
