@@ -1,5 +1,5 @@
 <div class="question" [class.no-wrapper]="noWrapper">
-  <div class="question__title" [innerHTML]="question.title"></div>
+  <div class="question__title point" [innerHTML]="question.title" (click)="onQuestionClick()"></div>
   <div class="question__body" *ngIf="question.body" [innerHTML]="question.body"></div>
   <div class="question__footer">
     <div class="username point" [class.not-clickable]="notClickable" (click)="onAuthorClick()">
@@ -10,7 +10,7 @@
     <div class="tags">
       <div *ngFor="let tag of question.tags" class="tag" [class.not-clickable]="notClickable" (click)="onTagClick(tag)">{{tag}}</div>
     </div>
-    <div class="comments">
+    <div class="comments point" (click)="onQuestionClick()">
       <fa name="comments" [class.green]="question.is_answered"></fa>
       <span>{{question.answer_count}}</span>
     </div>

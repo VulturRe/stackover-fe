@@ -11,7 +11,8 @@ import { RestorePageComponent } from 'src/app/components/pages/restore-page/rest
 import { SearchPageComponent } from 'src/app/components/pages/search-page/search-page.component';
 
 const routes: Routes = [
-  { path: '', component: SearchPageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'search', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'search', component: SearchPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [AnonymousGuard] },
   { path: 'restore', component: RestorePageComponent, canActivate: [AnonymousGuard] },
   { path: 'reset', component: ResetPageComponent, canActivate: [RestoreTokenGuard] },

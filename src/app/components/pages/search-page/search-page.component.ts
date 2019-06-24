@@ -1,4 +1,5 @@
-import { Component, ComponentFactoryResolver, QueryList, TemplateRef, ViewChildren, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, QueryList, TemplateRef, ViewChildren, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuickSearchComponent } from 'src/app/components/common/quick-search/quick-search.component';
 import { IQuestion } from 'src/app/models/stackoverflow';
 import { StackoverflowService } from 'src/app/services/stackoverflow.service';
@@ -8,7 +9,7 @@ import { StackoverflowService } from 'src/app/services/stackoverflow.service';
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements OnInit {
 
   page = 1;
   search: string;
@@ -20,25 +21,24 @@ export class SearchPageComponent {
     read: ViewContainerRef
   }) quickSearchPanels: QueryList<ViewContainerRef>;
 
-  constructor(private stackService: StackoverflowService,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private stackService: StackoverflowService,
               private factoryResolver: ComponentFactoryResolver) { }
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const search = params.get('search');
+      if (search) {
+        this.search = search;
+        this.doSearch();
+      }
+    });
+  }
 
   onSearch(value: string) {
     this.search = value;
-    if (!this.search || this.search.trim().length === 0) { return; }
-    if (value.split(' ').length === 1) {
-      this.stackService.searchByTag(value, this.page)
-        .subscribe(questions => {
-          this.hasMore = questions.has_more;
-          this.questions = questions.items;
-        });
-    } else {
-      this.stackService.similar(value, this.page)
-        .subscribe(questions => {
-          this.hasMore = questions.has_more;
-          this.questions = questions.items;
-        });
-    }
+    this.router.navigate(['/search'], { queryParams: { search: this.search } });
   }
 
   loadMore() {
@@ -95,6 +95,23 @@ export class SearchPageComponent {
           const componentRef = quickSearchPanel.createComponent(factory);
           componentRef.instance.user = question.owner;
           componentRef.instance.questions = questions.items;
+        });
+    }
+  }
+
+  private doSearch() {
+    if (!this.search || this.search.trim().length === 0) { return; }
+    if (this.search.split(' ').length === 1) {
+      this.stackService.searchByTag(this.search, this.page)
+        .subscribe(questions => {
+          this.hasMore = questions.has_more;
+          this.questions = questions.items;
+        });
+    } else {
+      this.stackService.similar(this.search, this.page)
+        .subscribe(questions => {
+          this.hasMore = questions.has_more;
+          this.questions = questions.items;
         });
     }
   }

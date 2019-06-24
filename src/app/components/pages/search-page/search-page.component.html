@@ -1,9 +1,10 @@
 <div class="ui grid">
   <div class="six">
-    <app-search (search)="onSearch($event)"></app-search>
+    <app-search [initialValue]="search" (search)="onSearch($event)"></app-search>
     <div *ngIf="questions" class="question-list">
       <ng-container *ngFor="let question of questions">
-        <app-question [question]="question" (tagClick)="onTagClick($event, question)"
+        <app-question [question]="question"
+                      (tagClick)="onTagClick($event, question)"
                       (authorClick)="onAuthorClick(question)"></app-question>
         <ng-template #quickSearch></ng-template>
       </ng-container>
